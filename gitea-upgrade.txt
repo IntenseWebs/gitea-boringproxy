@@ -5,29 +5,17 @@ systemctl stop gitea
 killall gitea
 systemctl status gitea
 mv gitea gitea.1.21.1.old
-wget -O gitea https://dl.gitea.com/gitea/1.24.6/gitea-1.24.6-linux-amd64
-su - gitea
-cp /home/iw/Downloads 1.21.2* .
-cp ~/Downloads 1.21.2* .
-cp ~/Downloads/gitea-1.21.2* .
-cp ~/Downloads/gitea-1.21.3* .
-cp ~/Downloads/gitea-1.21.4* .
+# wget -O gitea https://dl.gitea.com/gitea/1.27.1/gitea-1.27.1-linux-amd64
+wget -O gitea https://dl.gitea.com/gitea/main-nightly/gitea-main-nightly-linux-amd64
 chmod +x gitea*
 chown gitea:gitea gitea
-mv gitea-1.21.2-linux-amd64 gitea
-mv gitea gitea.1.21.2.old
-mv gitea-1.21.3-linux-amd64 gitea
-chmod +x gitea*
-chown gitea:gitea gitea
-mv gitea-1.21.4-linux-amd64 gitea
-chmod +x gitea*
-chown gitea:gitea gitea
-rm -f gitea.1.21.*
 
-### su - gitea
+su - gitea
+cd /usr/local/bin
 export GITEA_WORK_DIR=/var/lib/gitea/
 /usr/local/bin/gitea --version
 /usr/local/bin/gitea web --config /etc/gitea/app.ini
+
 /usr/local/bin/gitea web --config ~/app.ini
 export GITEA_WORK_DIR=/var/lib/gitea/
 /usr/local/bin/gitea web -c /etc/gitea/app.ini
